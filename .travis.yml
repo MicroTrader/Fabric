@@ -1,0 +1,22 @@
+language: java
+
+jdk:
+  - oraclejdk8
+
+os:
+  - linux
+  - osx
+
+env:
+  - ARCH=x86_64
+  - ARCH=i686
+
+before_install:
+  - pip install --user codecov
+
+script:
+  - ./gradlew build --stacktrace --info --debug --no-daemon
+
+after_success:
+  - codecov
+  - ./gradlew jacocoTestReport coveralls
