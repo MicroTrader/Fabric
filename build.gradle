@@ -94,7 +94,6 @@
 plugins {
     id 'java'
     id 'jacoco'
-    id 'net.saliman.cobertura' version '2.3.1'
     id 'com.github.kt3k.coveralls' version '2.6.3'
 }
 
@@ -118,8 +117,6 @@ repositories {
 
 dependencies {
     compile 'com.github.ObjectLayout:ObjectLayout:-SNAPSHOT'
-
-    compile 'com.github.MicroTrader:ObjPool:-SNAPSHOT'
 
     testCompile group: 'junit', name: 'junit', version: '4.12'
 }

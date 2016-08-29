@@ -93,36 +93,13 @@
 
 package com.sakrio.fabric;
 
-import org.ObjectLayout.ConstructionContext;
-import org.ObjectLayout.CtorAndArgs;
-import org.ObjectLayout.CtorAndArgsProvider;
-import org.ObjectLayout.StructuredArray;
-
-import static org.ObjectLayout.StructuredArray.newInstance;
+import org.jctools.queues.SpscUnboundedArrayQueue;
 
 /**
- * Created by sirinath on 28/08/2016.
+ * Created by sirinath on 29/08/2016.
  */
-abstract class InputOutput<S extends StructuredArray<T>, T extends Buffer<U>, U> extends StructuredArray<S> {
-    public static final Integer defaultBuffering = 10;
-
-    private static final Class[] cArgsT = new Class[]{ Integer.TYPE };
-    private static final Class<Buffer> elementClass = Buffer.class;
-    private static final CtorAndArgs<Buffer> cArgs = new CtorAndArgs<Buffer>(elementClass, cArgsT, defaultBuffering);
-    private static final CtorAndArgsProvider<Buffer> cArgsP = new CtorAndArgsProvider<Buffer>() {
-        @Override
-        public CtorAndArgs<Buffer> getForContext(ConstructionContext<Buffer> constructionContext) throws NoSuchMethodException {
-            return cArgs;
-        }
-    };
-
-    protected static <S extends StructuredArray<T>, T extends Buffer<U>, U> S newInstance(final Class<S> arrayClass, final long length, final Integer initialBuffering) {
-        cArgs.setArgs(initialBuffering);
-
-        return (S) newInstance((Class<S>) arrayClass, (Class<T>) elementClass, length, (CtorAndArgsProvider<T>) cArgsP);
-    }
-
-    protected static <S extends StructuredArray<T>, T extends Buffer<U>, U> S newWithDefaultBuffering(final Class<S> arrayClass, final long length) {
-        return newInstance(arrayClass, length, defaultBuffering);
+public final class Buffer<T> extends SpscUnboundedArrayQueue<T> {
+    public Buffer(int chunkSize) {
+        super(chunkSize);
     }
 }

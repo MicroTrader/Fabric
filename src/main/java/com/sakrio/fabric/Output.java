@@ -96,5 +96,6 @@ package com.sakrio.fabric;
 /**
  * Created by sirinath on 28/08/2016.
  */
-public abstract class Output<T> implements InputOutput<T> {
+public abstract class Output<T> extends InputOutput<T> {
+
 }

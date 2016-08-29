@@ -93,8 +93,11 @@
 
 package com.sakrio.fabric;
 
+import java.lang.invoke.MethodHandles;
+
 /**
  * Created by sirinath on 28/08/2016.
  */
-public abstract class Input<T> implements InputOutput<T> {
+public abstract class Input<T> extends InputOutput<T> {
+
 }
