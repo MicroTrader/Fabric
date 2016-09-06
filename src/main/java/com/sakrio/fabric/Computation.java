@@ -6,9 +6,9 @@
  *
  * ${PROJECT_NAME}, is a collection of works and / or artifacts submitted
  * and / or contributed by multiple authors ("Project Contributors"),
- * collectively creating a larger work and / or artifact (the / this
+ * collectively creating a larger work(s) and / or artifact(s) (the / this
  * "Project"). This project is licensed under the terms of either:
- *  - the Apache License, Version 2.0 (ASF 2.0), or
+ *  - the Apache License, Version 2.0 (ASL 2.0), or
  *  - the Academic Free License, Version 3.0 (AFL 3.0), or
  *  - the MIT License (MIT), collectively referred as the "Project Licenses".
  * As a recipient of this Project, you may choose which license to receive
@@ -108,5 +108,6 @@ package com.sakrio.fabric;
 /**
  * Created by sirinath on 28/08/2016.
  */
-public class Computation {
+public interface Computation {
+    void compute();
 }
