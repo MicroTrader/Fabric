@@ -103,45 +103,10 @@
  * _______________________________________________________________________________
  */
 
-plugins {
-    id 'java'
-    id 'jacoco'
-    id 'com.github.kt3k.coveralls' version '2.6.3'
-}
+package com.sakrio.fabric;
 
-apply plugin: 'maven-publish'
-
-group 'com.sakrio'
-version '0.1.0-SNAPSHOT'
-
-defaultTasks 'clean', 'build', 'jar', 'publishToMavenLocal'
-
-task wrapper(type: Wrapper) {
-    gradleVersion = '3.0'
-    distributionUrl = "https://services.gradle.org/distributions/gradle-$gradleVersion-all.zip"
-}
-
-sourceCompatibility = 1.8
-targetCompatibility = 1.8
-
-repositories {
-    jcenter()
-    mavenCentral()
-    mavenLocal()
-    ivy { url System.getProperty("user.home") + '/.ivy2' }
-    maven { url "https://jitpack.io" }
-}
-
-dependencies {
-    compile 'com.github.ObjectLayout:ObjectLayout:-SNAPSHOT'
-    compile 'com.github.MicroTrader:Collections:-SNAPSHOT'
-
-    testCompile group: 'junit', name: 'junit', version: '4.12'
-}
-
-jacocoTestReport {
-    reports {
-        xml.enabled true
-        html.enabled = true
-    }
+/**
+ * Created by sirinath on 08/09/2016.
+ */
+public class TimeIndex extends {
 }
