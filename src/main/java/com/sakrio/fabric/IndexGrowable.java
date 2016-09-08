@@ -103,45 +103,13 @@
  * _______________________________________________________________________________
  */
 
-plugins {
-    id 'java'
-    id 'jacoco'
-    id 'com.github.kt3k.coveralls' version '2.6.3'
-}
+package com.sakrio.fabric;
 
-apply plugin: 'maven'
-
-defaultTasks 'clean', 'build', 'jar', 'install'
-
-group 'com.sakrio'
-version '0.1.0-SNAPSHOT'
-
-task wrapper(type: Wrapper) {
-    gradleVersion = '3.0'
-    distributionUrl = "https://services.gradle.org/distributions/gradle-$gradleVersion-all.zip"
-}
-
-sourceCompatibility = 1.8
-targetCompatibility = 1.8
-
-repositories {
-    mavenLocal()
-    ivy { url System.getProperty("user.home") + '/.ivy2' }
-    jcenter()
-    mavenCentral()
-    maven { url "https://jitpack.io" }
-}
-
-dependencies {
-    compile 'com.github.ObjectLayout:ObjectLayout:-SNAPSHOT'
-    compile 'com.github.MicroTrader:Collections:-SNAPSHOT'
-
-    testCompile group: 'junit', name: 'junit', version: '4.12'
-}
-
-jacocoTestReport {
-    reports {
-        xml.enabled true
-        html.enabled = true
+/**
+ * Created by sirinath on 08/09/2016.
+ */
+public final class IndexGrowable extends LongGrowable {
+    public IndexGrowable(long length) {
+        super(length);
     }
 }
