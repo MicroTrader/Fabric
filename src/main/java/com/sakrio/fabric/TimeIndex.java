@@ -108,5 +108,5 @@ package com.sakrio.fabric;
 /**
  * Created by sirinath on 08/09/2016.
  */
-public class TimeIndex extends {
+public class TimeIndex {
 }
