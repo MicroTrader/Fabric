@@ -105,18 +105,13 @@
 
 package com.sakrio.fabric;
 
-import com.sakrio.collections.arrays.LongArray;
-
 /**
- * Created by sirinath on 08/09/2016.
+ * Created by sirinath on 10/09/2016.
  */
-public final class Index extends LongArray implements Indexed {
-    public Index(long length) {
-        super(length);
-    }
+public interface Indexed {
+    long get(final long index);
 
-    @Override
-    public final IndexType getIndexType() {
-        return IndexType.fixed;
-    }
+    void set(final long index, final long value);
+
+    IndexType getIndexType();
 }

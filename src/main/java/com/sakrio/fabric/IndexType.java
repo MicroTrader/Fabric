@@ -105,13 +105,9 @@
 
 package com.sakrio.fabric;
 
-import com.sakrio.collections.arrays.LongCircularArray;
-
 /**
- * Created by sirinath on 08/09/2016.
+ * Created by sirinath on 10/09/2016.
  */
-public final class TimeIndex extends LongCircularArray {
-    public TimeIndex(long length) {
-        super(length);
-    }
+public enum IndexType {
+    fixed, growable, rolling
 }

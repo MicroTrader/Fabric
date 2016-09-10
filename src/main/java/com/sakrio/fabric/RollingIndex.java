@@ -105,18 +105,18 @@
 
 package com.sakrio.fabric;
 
-import com.sakrio.collections.arrays.LongArray;
+import com.sakrio.collections.arrays.LongCircularArray;
 
 /**
  * Created by sirinath on 08/09/2016.
  */
-public final class Index extends LongArray implements Indexed {
-    public Index(long length) {
+public final class RollingIndex extends LongCircularArray implements Indexed {
+    public RollingIndex(long length) {
         super(length);
     }
 
     @Override
     public final IndexType getIndexType() {
-        return IndexType.fixed;
+        return IndexType.rolling;
     }
 }
