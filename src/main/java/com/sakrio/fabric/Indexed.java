@@ -106,12 +106,7 @@
 package com.sakrio.fabric;
 
 /**
- * Created by sirinath on 10/09/2016.
+ * Created by sirinath on 11/09/2016.
  */
 public interface Indexed {
-    long get(final long index);
-
-    void set(final long index, final long value);
-
-    IndexType getIndexType();
 }
