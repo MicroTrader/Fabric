@@ -110,7 +110,7 @@ import com.sakrio.collections.arrays.LongGrowable;
 /**
  * Created by sirinath on 08/09/2016.
  */
-public final class IndexGrowable extends LongGrowable implements Indexed {
+public final class GrowableIndex extends LongGrowable implements Indexed {
     @Override
     public final IndexType getIndexType() {
         return IndexType.growable;
