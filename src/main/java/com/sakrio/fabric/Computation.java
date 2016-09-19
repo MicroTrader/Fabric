@@ -105,9 +105,30 @@
 
 package com.sakrio.fabric;
 
+import io.reactivex.subjects.PublishSubject;
+import io.reactivex.subjects.ReplaySubject;
+
+
 /**
  * Created by sirinath on 28/08/2016.
  */
-public interface Computation {
-    void compute();
+public abstract class Computation<O> {
+    protected final ReplaySubject<PublishSubject> inputs = ReplaySubject.create();
+    protected final PublishSubject<O> outputs = PublishSubject.create();
+    private final int stage;
+
+    public Computation(final int stage, final Computation... inputs) {
+        this.stage = stage;
+
+        for (Computation c : inputs) {
+            if (c.stage >= stage)
+                throw new IllegalArgumentException("Can only link to previous stages");
+
+
+        }
+    }
+
+    public final int getStage() {
+        return stage;
+    }
 }
