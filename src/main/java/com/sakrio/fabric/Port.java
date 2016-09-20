@@ -105,30 +105,55 @@
 
 package com.sakrio.fabric;
 
+import io.reactivex.Observable;
+import io.reactivex.Observer;
+import io.reactivex.observables.GroupedObservable;
 import io.reactivex.subjects.PublishSubject;
 import io.reactivex.subjects.ReplaySubject;
 
-
 /**
- * Created by sirinath on 28/08/2016.
+ * Created by sirinath on 20/09/2016.
  */
-public abstract class Computation<O> {
-    protected final ReplaySubject<PublishSubject> inputs = ReplaySubject.create();
-    protected final PublishSubject<O> outputs = PublishSubject.create();
-    private final int stage;
+public abstract class Port<G, T> {
+    protected final String name;
+    private final PublishSubject<T> subject = PublishSubject.create();
 
-    public Computation(final int stage, final Computation... inputs) {
-        this.stage = stage;
-
-        for (Computation c : inputs) {
-            if (c.stage >= stage)
-                throw new IllegalArgumentException("Can only link to previous stages");
-
-
-        }
+    protected Port(final String name) {
+        this.name = name;
     }
 
-    public final int getStage() {
-        return stage;
+    public final PublishSubject<T> getSubject() {
+        return subject;
+    }
+
+    public final void on(final T e) {
+        subject.onNext(e);
+    }
+
+    public final void Shutdown() {
+        subject.onComplete();
+    }
+
+    protected abstract G classifier(final T item);
+
+    public final Observable<GroupedObservable<G, T>> grouped() {
+        return subject.groupBy(this::classifier);
+    }
+
+    public final Observable<GroupedObservable<G, Observable<T>>> history(final int count) {
+        final ReplaySubject<GroupedObservable<G, Observable<T>>> history = ReplaySubject.create();
+
+        grouped().subscribe((go) -> {
+            final G key = go.getKey();
+
+            go.window(count).subscribe((wo) -> {
+                history.onNext(new GroupedObservable<G, Observable<T>>(key) {
+                    @Override
+                    protected void subscribeActual(Observer<? super Observable<T>> observer) {
+                        this.subscribe(observer);
+                    }
+                });
+            });
+        });
     }
 }
